@@ -1,0 +1,4 @@
+GET http://localhost:5035/products/{{{{productsId}}}}
+Authorization: Bearer {{token}}
+Accept: application/json
+

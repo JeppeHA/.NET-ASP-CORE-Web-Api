@@ -1,0 +1,16 @@
+{
+  "rest-client.environmentVariables": {
+    "$shared": {
+      "productsId": "testid"
+    },
+    "dev": {
+      "token": "ey..dev"
+    },
+    "staging": {
+      "token": "ey.."
+    },
+    "prod": {
+      "token": "ey.."
+    }
+  }
+}
