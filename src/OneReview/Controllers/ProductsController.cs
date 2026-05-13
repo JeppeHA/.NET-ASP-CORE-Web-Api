@@ -1,7 +1,7 @@
 using OneReview.Services;
 using OneReview.Domain;
 using Microsoft.AspNetCore.Mvc;
-using OneReview.Services;
+using Microsoft.VisualBasic;
 namespace OneReview.Controllers;
 
 
@@ -14,11 +14,12 @@ public class ProductsController(ProductService productService) : ControllerBase
     [HttpPost]
     public IActionResult Create(CreateProductsRequest request)
     {
+        User user = new User();
         // mapping to internal representation
         var product = request.ToDomain();
   
         // invoking the use case
-        _productService.Create(product);
+        _productService.Create(user.Id, product);
 
         // mapping to external representation
         return CreatedAtAction(
@@ -31,11 +32,11 @@ public class ProductsController(ProductService productService) : ControllerBase
     [HttpGet("{productId:guid}")]
     public IActionResult Get(Guid productId)
     {
-        // Get product
-        // return 200 ok response
-        return Ok(
-            //Resource
-        );
+        // invoking the use case
+        var product = _productService.Get(productId);
+        return product is null 
+        ? Problem(statusCode: StatusCodes.Status404NotFound, detail: $"Product not found") :
+        Ok(ProductResponse.FromDomain(product));
     }
 
     public record CreateProductsRequest(

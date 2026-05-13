@@ -4,6 +4,7 @@
       "productsId": "testid"
     },
     "dev": {
+      "host": "http://localhost:5001",
       "token": "ey..dev"
     },
     "staging": {
