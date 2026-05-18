@@ -1,20 +1,26 @@
 using OneReview.Persistence.Database;
 using OneReview.Services;
+using OneReview.DependencyInjection;
+using OneReview.RequestPipeline;
 
 var builder = WebApplication.CreateBuilder(args);
 {
-    builder.Services.AddScoped<ProductService>();
-    builder.Services.AddScoped<PlayerService>();
-    builder.Services.AddControllers();
+    builder.Services.AddServices()
+    .AddPersistence(builder.Configuration)
+    .AddControllers();
 }
+
 var app = builder.Build();
 {
     app.MapControllers();
-
-   DbInitializer.Initialize(app.Configuration["Database:ConnectionStrings:DefaultConnection"]!);
-
-   Console.Out.Flush();
+    Console.WriteLine("Connection string!!!!");
+    Console.WriteLine("Connection string: " + app.Configuration.GetConnectionString("DefaultConnection"));
+    app.InitializeDatabade();
 }
+
+
+
+
 app.Run();
 
    

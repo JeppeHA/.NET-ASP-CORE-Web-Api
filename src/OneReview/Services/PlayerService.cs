@@ -1,26 +1,19 @@
 using OneReview.Domain;
+using OneReview.Persistence.Repositories;
 
 
-public class PlayerService
+public class PlayerService(PlayerRepository playerRepository)
 {
-    // Temp database
-    private static readonly List<Player> _playersRepositoiry = new List<Player>();
-
-    public void Create(Player player)
+    private readonly PlayerRepository _playerRepository = playerRepository;
+    public async Task CreateAsync(Player player)
     {
-        if(!_playersRepositoiry.Any(p => p.Id == player.Id))
-        {
-            AddPlayer(player);
-        }
+        // store players in the database
+        await _playerRepository.CreateAsync(player);
     }
 
-    public void AddPlayer(Player player)
+    public async Task<Player?> GetAsync(Guid playerId)
     {
-        _playersRepositoiry.Add(player);
+       return await _playerRepository.GetByIdAsync(playerId);
     }
-
-    public Player? Get(Guid playerId)
-    {
-        return _playersRepositoiry.Find(x => x.Id == playerId);
-    }
+    
 }   

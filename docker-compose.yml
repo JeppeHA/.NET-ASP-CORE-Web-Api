@@ -7,22 +7,23 @@ services:
     ports:
       - "5001:5001"
     environment:
-      - ASPNETCORE_ENVIROMENT=Development
-      - Database__ConnectionStrings__DefaultConnection=Host=db;Port=5432;Database=onereview;Username=postgres;Password=strong_password
+      - ASPNETCORE_ENVIRONMENT=Development
+      - ConnectionStrings__DefaultConnection=Host=db;Port=5432;Database=onereview;Username=postgres;Password=1234
     depends_on:
       db:
         condition: service_healthy
+
   db:
     container_name: one-review-db
-    image: postgres:latest
+    image: postgres:17-alpine
     ports:
       - "5432:5432"
     environment:
       POSTGRES_DB: onereview
       POSTGRES_USER: postgres
-      POSTGRES_PASSWORD: strong_password
+      POSTGRES_PASSWORD: 1234
     volumes:
-      - postgres_data:/var/lib/postresql/data
+      - postgres_data:/var/lib/postgresql/data
     healthcheck:
       test: ["CMD-SHELL", "pg_isready -U postgres -d onereview"]
       interval: 5s

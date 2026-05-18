@@ -1,10 +1,10 @@
 # @name create
-POST {{host}}/player
+POST {{host}}/Players
 Authorization: Bearer {{token}}
 Content-Type: application/json
 
 {
-    "Name": "Jeppe",
+    "Name": "Name",
     "Age": 24,
     "Gender": "Male"
 }
