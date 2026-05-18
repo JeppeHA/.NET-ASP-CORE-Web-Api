@@ -4,6 +4,7 @@ using OneReview.Services;
 var builder = WebApplication.CreateBuilder(args);
 {
     builder.Services.AddScoped<ProductService>();
+    builder.Services.AddScoped<PlayerService>();
     builder.Services.AddControllers();
 }
 var app = builder.Build();

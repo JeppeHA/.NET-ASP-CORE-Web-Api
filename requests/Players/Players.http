@@ -1,0 +1,13 @@
+# @name create
+POST {{host}}/player
+Authorization: Bearer {{token}}
+Content-Type: application/json
+
+{
+    "Name": "Jeppe",
+    "Age": 24,
+    "Gender": "Male"
+}
+
+### get based on location header
+GET {{create.response.headers.Location}}

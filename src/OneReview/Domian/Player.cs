@@ -1,9 +1,12 @@
 namespace OneReview.Domain;
 
-public class Product
+public class Player
 {
     public Guid Id { get; init; } = Guid.NewGuid();
     public required string Name { get; init; }
-    public required string Category { get; init; }
-    public required string SubCategory { get; init; }
+
+    public int Age { get; init; }
+
+    public string Gender { get; init; }
+
 }
