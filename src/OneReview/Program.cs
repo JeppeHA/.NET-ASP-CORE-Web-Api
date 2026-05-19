@@ -6,15 +6,15 @@ using OneReview.RequestPipeline;
 var builder = WebApplication.CreateBuilder(args);
 {
     builder.Services.AddServices()
+    .AddGlobalErrorHandling()
     .AddPersistence(builder.Configuration)
     .AddControllers();
 }
 
 var app = builder.Build();
 {
+    app.UseExceptionHandler();
     app.MapControllers();
-    Console.WriteLine("Connection string!!!!");
-    Console.WriteLine("Connection string: " + app.Configuration.GetConnectionString("DefaultConnection"));
     app.InitializeDatabade();
 }
 
