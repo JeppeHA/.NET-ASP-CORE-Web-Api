@@ -1,0 +1,13 @@
+# @name create
+POST {{host}}/Courses
+Authorization: Bearer {{token}}
+Content-Type: application/json
+
+{
+    "Name": "CourseName",
+    "NumberOfHoles": 18,
+    "Difficulty": "Hard"
+}
+
+### get based on location header
+GET {{create.response.headers.Location}}

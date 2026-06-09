@@ -13,6 +13,7 @@ public static class ServiceCollectionExtensions
     )
     {
         services.AddScoped<PlayerService>();
+        services.AddScoped<CourseService>();
         return services;
     }
 
@@ -25,6 +26,7 @@ public static class ServiceCollectionExtensions
          new NpgsqlConnectionFactory(
             configuration[DbConstants.DefaultConnectionStringPath]!));
         services.AddScoped<PlayerRepository>();
+        services.AddScoped<CourseRepository>();
         return services;
     }
 
