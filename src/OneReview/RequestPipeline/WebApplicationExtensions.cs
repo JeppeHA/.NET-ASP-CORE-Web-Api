@@ -1,10 +1,14 @@
+using System.Security.Cryptography.X509Certificates;
 using OneReview.Persistence.Database;
+using Microsoft.AspNetCore.Diagnostics;
+using System;
 
 namespace OneReview.RequestPipeline;
 
 public static class WebApplicationExtensisons
 {
     public static WebApplication InitializeDatabade(this WebApplication app)
+<<<<<<< HEAD
     {
         var connectionString = app.Configuration.GetConnectionString("DefaultConnection");
 
@@ -12,7 +16,33 @@ public static class WebApplicationExtensisons
             throw new InvalidOperationException("Connection string 'DefaultConnection' not found.");
 
         DbInitializer.Initialize(connectionString);
+=======
+    {  
+        DbInitializer.Initialize(
+   
+            app.Configuration[DbConstants.DefaultConnectionStringPath]!
+        );
+        return app;
+    }
 
+    public static WebApplication UseGlobalErrorHandling(this WebApplication app)
+    {  
+        // Catches error and redirects it to a given route
+        app.UseExceptionHandler("/error");
+>>>>>>> 0248a6e52eb2276db32b081b7f0bd4353c774b71
+
+        app.Map("/error", (HttpContext httpContext) =>
+        {
+            Exception? exception = httpContext.Features.Get<IExceptionHandlerFeature>()?.Error;
+
+            if(exception is null)
+            {
+                // Handle unexpected case
+                return Results.Problem();
+            }
+            // global error handling
+            return Results.Problem();
+        });
         return app;
     }
 }
