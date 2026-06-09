@@ -12,14 +12,13 @@ var builder = WebApplication.CreateBuilder(args);
 
 var app = builder.Build();
 {
+    app.UseDeveloperExceptionPage(); 
+    app.UseRouting();            
+    app.UseAuthentication();
+    app.UseAuthorization();
     app.MapControllers();
-    Console.WriteLine("Connection string!!!!");
-    Console.WriteLine("Connection string: " + app.Configuration.GetConnectionString("DefaultConnection"));
     app.InitializeDatabade();
 }
-
-
-
 
 app.Run();
 

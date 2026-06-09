@@ -21,6 +21,19 @@ public class PlayerRepository(IDbConnectionFactory dbConnectionFactory)
         result.Throw().IfNegativeOrZero();
     }
 
+    public async Task DeleteAsync(Guid playerId)
+    {
+        using IDbConnection connection = await _dbConnectionFactory.CreateConnectionAsync();
+
+        string query = @"DELETE FROM players WHERE Id = @Id";
+
+         int rowsAffected = await connection.ExecuteAsync(
+        query,
+        new { Id = playerId }
+        );
+
+    }
+
     public async Task<Player?> GetByIdAsync(Guid playerId)
     {
         using IDbConnection connection = await _dbConnectionFactory.CreateConnectionAsync();

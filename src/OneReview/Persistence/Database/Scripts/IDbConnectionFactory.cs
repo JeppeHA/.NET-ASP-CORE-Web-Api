@@ -1,5 +1,6 @@
 using System.Data;
-using OneReview.Persistence.Database;
+
+namespace OneReview.Persistence.Database;
 
 public interface IDbConnectionFactory
 {

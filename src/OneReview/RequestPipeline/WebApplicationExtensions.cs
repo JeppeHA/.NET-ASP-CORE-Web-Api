@@ -6,18 +6,12 @@ public static class WebApplicationExtensisons
 {
     public static WebApplication InitializeDatabade(this WebApplication app)
     {
-        Console.WriteLine("PATH!!!");
-        Console.WriteLine(DbConstants.DefaultConnectionStringPath);
-        
-        DbInitializer.Initialize(
-   
-            app.Configuration[DbConstants.DefaultConnectionStringPath]!
-        );
+        var connectionString = app.Configuration.GetConnectionString("DefaultConnection");
 
-        Console.WriteLine(":::");
-        Console.WriteLine(app.Configuration["Database:ConnectionStrings:DefaultConnection"]);
-        Console.WriteLine("---");
-        Console.WriteLine(app.Configuration["Database__ConnectionStrings__DefaultConnection"]);
+        if (string.IsNullOrEmpty(connectionString))
+            throw new InvalidOperationException("Connection string 'DefaultConnection' not found.");
+
+        DbInitializer.Initialize(connectionString);
 
         return app;
     }

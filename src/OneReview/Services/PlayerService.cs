@@ -16,4 +16,8 @@ public class PlayerService(PlayerRepository playerRepository)
        return await _playerRepository.GetByIdAsync(playerId);
     }
     
+    public async Task DeleteAsync(Guid playerId)
+    {
+        await _playerRepository.DeleteAsync(playerId);
+    }
 }   

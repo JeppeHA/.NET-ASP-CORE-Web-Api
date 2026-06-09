@@ -1,6 +1,8 @@
 using OneReview.Domain;
 using Microsoft.AspNetCore.Mvc;
 
+using System.Reflection.Metadata.Ecma335;
+
 namespace OneReview.Controllers;
 
 [ApiController]
@@ -23,6 +25,12 @@ public class PlayersController(PlayerService playerService) : ControllerBase
         );
     }
 
+    [HttpDelete("{id:guid}")]
+    public async Task<IActionResult> Delete(Guid id)
+    {
+    await _playerService.DeleteAsync(id);
+    return Ok();
+    }
     [HttpGet("{id:guid}")]
     public async Task<IActionResult> Get(Guid id)
     {
