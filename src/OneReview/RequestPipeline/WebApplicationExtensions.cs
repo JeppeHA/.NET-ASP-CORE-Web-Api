@@ -8,7 +8,6 @@ namespace OneReview.RequestPipeline;
 public static class WebApplicationExtensisons
 {
     public static WebApplication InitializeDatabade(this WebApplication app)
-<<<<<<< HEAD
     {
         var connectionString = app.Configuration.GetConnectionString("DefaultConnection");
 
@@ -16,8 +15,7 @@ public static class WebApplicationExtensisons
             throw new InvalidOperationException("Connection string 'DefaultConnection' not found.");
 
         DbInitializer.Initialize(connectionString);
-=======
-    {  
+
         DbInitializer.Initialize(
    
             app.Configuration[DbConstants.DefaultConnectionStringPath]!
@@ -29,7 +27,6 @@ public static class WebApplicationExtensisons
     {  
         // Catches error and redirects it to a given route
         app.UseExceptionHandler("/error");
->>>>>>> 0248a6e52eb2276db32b081b7f0bd4353c774b71
 
         app.Map("/error", (HttpContext httpContext) =>
         {
