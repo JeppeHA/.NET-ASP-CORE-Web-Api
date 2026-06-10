@@ -23,4 +23,8 @@ var app = builder.Build();
 
 app.Run();
 
+// Start in terminal
+//docker exec -it <container_name> psql -U <username> -d <database>
+// Quit in terminal
+// /q
    

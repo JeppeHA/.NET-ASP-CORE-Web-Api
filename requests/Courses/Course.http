@@ -4,9 +4,9 @@ Authorization: Bearer {{token}}
 Content-Type: application/json
 
 {
-    "Name": "CourseName",
+    "Name": "Bolbro Disc Golf Bane",
     "NumberOfHoles": 18,
-    "Difficulty": "Hard"
+    "Difficulty": "Moderate"
 }
 
 ### get based on location header

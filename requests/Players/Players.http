@@ -4,7 +4,7 @@ Authorization: Bearer {{token}}
 Content-Type: application/json
 
 {
-    "Name": "Name",
+    "Name": "Jeppe",
     "Age": 24,
     "Gender": "Male"
 }
