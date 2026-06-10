@@ -46,4 +46,16 @@ public class CourseRepository(IDbConnectionFactory dbConnectionFactory)
 
         return await connection.QueryFirstOrDefaultAsync<Course>(query, new { Id = courseId });
     }
+
+    public async Task<Course?> GetByNameAsync(string name)
+    {
+        using IDbConnection connection = await _dbConnectionFactory.CreateConnectionAsync();
+
+        string query = @"
+        SELECT id, name, numberOfHoles, difficulty
+        FROM courses
+        WHERE name = @Name";
+
+        return await connection.QueryFirstOrDefaultAsync<Course>(query, new { Name = name });
+    }
 }

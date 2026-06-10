@@ -1,14 +1,40 @@
-namespace OneReview.Services.Import;
+using OneReview.Persistence.Repositories;
 
+namespace OneReview.Services.Import;
 public class CourseImportParser
 {
-    public Course Parse(string line)
+    public async Task<Course?> Parse(string line, CourseRepository courseRepository)
     {
+
+        if (string.IsNullOrWhiteSpace(line))
+        return null;
+
         var columns = line.Split(',');
-        return new Course
+
+        Console.WriteLine("Line: " + line);
+
+        if (columns.Length < 3)
+            return null;
+
+        var course = await courseRepository.GetByNameAsync(columns[1]);
+        if (course != null)
+        {   
+            return course;
+        }
+        else
         {
-            Name = columns[0],
-            // map the rest...
+           int numberOfHoles = columns.Length - 8;
+           string difficulty = columns[2].ToString();
+
+            return new Course
+            {
+                Name = columns[1],
+                NumberOfHoles = numberOfHoles,
+                Difficulty = difficulty
+            };
+
+           
         };
     }
+        
 }

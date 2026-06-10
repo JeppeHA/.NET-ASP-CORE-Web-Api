@@ -3,6 +3,8 @@ using Microsoft.Extensions.DependencyInjection;
 using OneReview.Persistence.Database;
 using OneReview.Persistence.Repositories;
 using OneReview.Services;
+using OneReview.Services.Import;
+
 
 namespace OneReview.DependencyInjection;
 
@@ -14,6 +16,9 @@ public static class ServiceCollectionExtensions
     {
         services.AddScoped<PlayerService>();
         services.AddScoped<CourseService>();
+        services.AddScoped<HoleService>();
+        services.AddScoped<CourseImportService>();
+        services.AddScoped<CourseImportParser>();
         return services;
     }
 
@@ -27,6 +32,7 @@ public static class ServiceCollectionExtensions
             configuration[DbConstants.DefaultConnectionStringPath]!));
         services.AddScoped<PlayerRepository>();
         services.AddScoped<CourseRepository>();
+        services.AddScoped<HoleRepository>();
         return services;
     }
 

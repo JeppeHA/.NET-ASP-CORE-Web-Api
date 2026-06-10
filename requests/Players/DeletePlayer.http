@@ -1,4 +1,4 @@
-@playerId = 77b86278-4ede-4894-a4c0-fb7d0953c84b
+@playerId = fff0df34-d306-4fc1-b337-98ce73e498a1
 # @name delete
 DELETE {{host}}/Players/{{playerId}}
 Authorization: Bearer {{token}}

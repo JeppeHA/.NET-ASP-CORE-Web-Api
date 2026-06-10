@@ -12,7 +12,7 @@ CREATE TABLE IF NOT EXISTS courses(
     difficulty VARCHAR NOT NULL
 );
 
-CREATE TABLE IF NOT EXISTS hole(
+CREATE TABLE IF NOT EXISTS holes(
     holeNumber INT NOT NULL,
     courseId UUID NOT NULL,
     par INT NOT NULL,
@@ -20,7 +20,7 @@ CREATE TABLE IF NOT EXISTS hole(
     FOREIGN KEY (courseId) REFERENCES courses(id)
 );
 
-CREATE TABLE IF NOT EXISTS round(
+CREATE TABLE IF NOT EXISTS rounds(
     id UUID PRIMARY KEY,
     playerId UUID NOT NULL,
     courseID UUID NOT NULL,
@@ -29,13 +29,14 @@ CREATE TABLE IF NOT EXISTS round(
     FOREIGN KEY (courseId) REFERENCES courses(id)
 );
 
-CREATE TABLE IF NOT EXISTS score(
+CREATE TABLE IF NOT EXISTS scores(
     roundId UUID NOT NULL,
     holeNumber INT NOT NULL,
     courseId UUID NOT NULL,
     strokes int NOT NULL,
+    
     PRIMARY KEY (roundId, holeNumber,courseId),
-    FOREIGN KEY (roundId) REFERENCES round(id),
-    FOREIGN KEY (holeNumber, courseId) REFERENCES hole(holeNumber, courseId)
+    FOREIGN KEY (roundId) REFERENCES rounds(id),
+    FOREIGN KEY (holeNumber, courseId) REFERENCES holes(holeNumber, courseId)
 );
   

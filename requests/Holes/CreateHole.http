@@ -1,0 +1,13 @@
+# @name create
+POST {{host}}/Holes
+Authorization: Bearer {{token}}
+Content-Type: application/json
+
+{
+    "HoleNumber": 2,
+    "CourseId": "502648e0-97db-4e77-9cdd-74d730d326ea",
+    "Par": 3
+}
+
+### get based on location header
+GET {{create.response.headers.Location}}
