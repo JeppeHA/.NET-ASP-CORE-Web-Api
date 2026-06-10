@@ -6,22 +6,24 @@ namespace OneReview.Controllers;
 
 [ApiController]
 [Route("[controller]")]
-public class ImportController(CourseImportService courseImportService) : ControllerBase
+public class ImportController(
+    CourseImportService courseImportService,
+    PlayerImportService playerImportService
+    ) : ControllerBase
 {
 
 private readonly CourseImportService _courseImportService = courseImportService;
+private readonly PlayerImportService _playerImportService = playerImportService;
 
 [HttpPost]
-public async Task<IActionResult> Import(IFormFile file)
+public async Task<IActionResult> Import(IFormFile file, [FromForm] int age, [FromForm] string gender)
 {
     using var reader = new StreamReader(file.OpenReadStream());
     var content = await reader.ReadToEndAsync();
     var lines = content.Split(new[] { '\n', '\r' }, StringSplitOptions.RemoveEmptyEntries);
-    Console.WriteLine("line length: " + lines.Length);
-    Console.WriteLine("raw content: " + content);
-    Console.WriteLine("content length: " + content.Length);
 
     await _courseImportService.ImportAsync(lines);
+    await _playerImportService.ImportAsync(lines, age, gender);
     return Ok();
 }
 }

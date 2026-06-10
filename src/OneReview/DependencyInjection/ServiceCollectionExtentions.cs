@@ -19,6 +19,8 @@ public static class ServiceCollectionExtensions
         services.AddScoped<HoleService>();
         services.AddScoped<CourseImportService>();
         services.AddScoped<CourseImportParser>();
+        services.AddScoped<PlayerImportService>();
+        services.AddScoped<PlayerImportParser>();
         return services;
     }
 

@@ -14,11 +14,14 @@ public class CourseImportService
     }
 
     public async Task ImportAsync(string[] lines)
-{
-    if (lines.Length < 2) return;
+    {
+        if (lines.Length < 2) return;
 
-    var course = await _parser.Parse(lines[1], _courseRepository);
-    if (course is null) return;
-    await _courseRepository.CreateAsync(course);
-}
+        var course = await _parser.Parse(lines[1], _courseRepository);
+        if (course is null) return;
+
+        var existing = await _courseRepository.GetByNameAsync(course.Name);
+        if (existing is null)
+            await _courseRepository.CreateAsync(course);
+    }
 }

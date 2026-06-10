@@ -45,4 +45,17 @@ public class PlayerRepository(IDbConnectionFactory dbConnectionFactory)
 
         return await connection.QueryFirstOrDefaultAsync<Player>(query, new { Id = playerId });
     }
+
+
+    public async Task<Player?> GetByNameAsync(string name)
+    {
+        using IDbConnection connection = await _dbConnectionFactory.CreateConnectionAsync();
+
+        string query = @"
+        SELECT id, name, age, gender
+        FROM players
+        WHERE name = @Name";
+
+        return await connection.QueryFirstOrDefaultAsync<Player>(query, new { Name = name });
+    }
 }
