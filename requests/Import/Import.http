@@ -2,10 +2,10 @@ POST {{host}}/Import
 Content-Type: multipart/form-data; boundary=boundary
 
 --boundary
-Content-Disposition: form-data; name="file"; filename="courses.csv"
+Content-Disposition: form-data; name="file"; filename="Ollerup.csv"
 Content-Type: text/csv
 
-< ./courses.csv
+< ./Ollerup.csv
 --boundary
 Content-Disposition: form-data; name="age"
 

@@ -32,7 +32,7 @@ public class PlayerImportParser
             {
                 Name = columns[0],
                 Age = age,
-                Gender = gender,
+                Gender = gender
             };
         }
 
