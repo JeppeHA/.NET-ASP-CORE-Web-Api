@@ -23,7 +23,7 @@ CREATE TABLE IF NOT EXISTS holes(
 CREATE TABLE IF NOT EXISTS rounds(
     id UUID PRIMARY KEY,
     playerId UUID NOT NULL,
-    courseID UUID NOT NULL,
+    courseId UUID NOT NULL,
     roundDate TIMESTAMP NOT NULL,
     FOREIGN KEY (playerId) REFERENCES players(id),
     FOREIGN KEY (courseId) REFERENCES courses(id)
