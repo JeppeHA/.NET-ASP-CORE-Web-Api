@@ -11,6 +11,7 @@ public class PlayersController(PlayerService playerService) : ControllerBase
     [HttpPost]
     public async Task<IActionResult> Create([FromBody] CreatePlayerRequest request)
     {
+        Console.WriteLine("CreatePlayer");
         var player = request.ToDomain();
 
         await _playerService.CreateAsync(player);

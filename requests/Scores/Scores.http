@@ -1,0 +1,14 @@
+# @name create
+POST {{host}}/Scores
+Authorization: Bearer {{token}}
+Content-Type: application/json
+
+{
+    "RoundId": "902fe335-2f0c-4ef2-b051-ea52623fe2f2",
+    "HoleNumber": 1,
+    "CourseId": "1ca973e2-4e58-464a-900f-a50c0230e6ae",
+    "Strokes": 1
+}
+
+### get based on location header
+GET {{create.response.headers.Location}}

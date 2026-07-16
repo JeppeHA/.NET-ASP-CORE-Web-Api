@@ -4,8 +4,8 @@ Authorization: Bearer {{token}}
 Content-Type: application/json
 
 {
-    "PlayerId": "7f7783bd-0232-4be3-b6cf-c280f4445915",
-    "CourseId": "384aaf4a-1a58-48ea-b29e-0dbc5aea0b44"
+    "PlayerId": "3d025a17-8e2a-4d31-81ae-028560a139e7",
+    "CourseId": "1ca973e2-4e58-464a-900f-a50c0230e6ae"
 }
 
 ### get based on location header

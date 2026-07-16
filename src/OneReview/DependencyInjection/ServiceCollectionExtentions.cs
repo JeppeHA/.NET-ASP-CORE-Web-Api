@@ -17,13 +17,15 @@ public static class ServiceCollectionExtensions
         services.AddScoped<PlayerService>();
         services.AddScoped<CourseService>();
         services.AddScoped<HoleService>();
+        services.AddScoped<RoundService>();
+        services.AddScoped<ScoreService>();
         services.AddScoped<CourseImportService>();
         services.AddScoped<CourseImportParser>();
         services.AddScoped<PlayerImportService>();
         services.AddScoped<PlayerImportParser>();
         services.AddScoped<HoleImportService>();
         services.AddScoped<HoleImportParser>();
-        services.AddScoped<RoundService>();
+        
         return services;
     }
 
@@ -39,6 +41,7 @@ public static class ServiceCollectionExtensions
         services.AddScoped<CourseRepository>();
         services.AddScoped<HoleRepository>();
         services.AddScoped<RoundRepository>();
+        services.AddScoped<ScoreRepository>();
         return services;
     }
 
