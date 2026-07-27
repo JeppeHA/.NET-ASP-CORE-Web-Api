@@ -25,6 +25,8 @@ public static class ServiceCollectionExtensions
         services.AddScoped<PlayerImportParser>();
         services.AddScoped<HoleImportService>();
         services.AddScoped<HoleImportParser>();
+        services.AddScoped<RoundImportService>();
+        services.AddScoped<RoundImportParser>();
         
         return services;
     }
@@ -42,6 +44,7 @@ public static class ServiceCollectionExtensions
         services.AddScoped<HoleRepository>();
         services.AddScoped<RoundRepository>();
         services.AddScoped<ScoreRepository>();
+
         return services;
     }
 

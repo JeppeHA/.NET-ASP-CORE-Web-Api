@@ -9,7 +9,8 @@ namespace OneReview.Controllers;
 public class ImportController(
     CourseImportService courseImportService,
     PlayerImportService playerImportService,
-    HoleImportService holeImportService
+    HoleImportService holeImportService,
+    RoundImportService roundImportService
     ) : ControllerBase
 {
 
@@ -17,6 +18,8 @@ private readonly CourseImportService _courseImportService = courseImportService;
 private readonly PlayerImportService _playerImportService = playerImportService;
 
 private readonly HoleImportService _holeImportService = holeImportService;
+
+private readonly RoundImportService _roundImportService = roundImportService;
 
 [HttpPost]
 public async Task<IActionResult> Import(IFormFile file, [FromForm] int age, [FromForm] string gender)
@@ -28,6 +31,7 @@ public async Task<IActionResult> Import(IFormFile file, [FromForm] int age, [Fro
     await _courseImportService.ImportAsync(lines);
     await _holeImportService.ImportAsync(lines);
     await _playerImportService.ImportAsync(lines, age, gender);
+    await _roundImportService.ImportAsync(lines);
     
     return Ok();
 }

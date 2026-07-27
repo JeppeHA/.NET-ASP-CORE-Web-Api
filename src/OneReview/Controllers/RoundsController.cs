@@ -11,18 +11,19 @@ public class RoundsController(RoundService roundService) : ControllerBase
     [HttpPost]
     public async Task<IActionResult> Create([FromBody] CreateRoundRequest request)
     {
+        Console.WriteLine("Creating round!");
         var round = request.ToDomain();
 
         await _roundService.CreateAsync(round);
 
         return CreatedAtAction(
-            actionName: nameof(Get),
-            routeValues: new { playerId = round.PlayerId, courseId = round.CourseId, roundDate = DateTime.Now },
-            value: RoundResponse.FromDomain(round)
+        actionName: nameof(Get),
+        routeValues: new { id = round.Id },
+        value: RoundResponse.FromDomain(round)
         );
     }
 
-    [HttpGet("{courseId:guid}/{holeNumber:int}")]
+    [HttpGet("{id:guid}")]
     public async Task<IActionResult> Get(Guid id)
     {
         var round = await _roundService.GetAsync(id);

@@ -25,6 +25,17 @@ app.Run();
 
 // Start in terminal
 //docker exec -it <container_name> psql -U <username> -d <database>
+// docker exec -it one-review-db psql -U postgres -d onereview
 // Quit in terminal
 // /q
+
+// Build containers
+// docker compose --build -d
+
+// Stop contioners
+// docker compose down (With volumes -v)
+
+// See inside a container
+// docker logs -f one-review-api
+
    

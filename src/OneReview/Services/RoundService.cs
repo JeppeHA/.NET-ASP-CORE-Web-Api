@@ -12,9 +12,9 @@ public class RoundService(RoundRepository roundRepository)
         await _roundRepository.CreateAsync(round);
     }
 
-    public async Task<Round?> GetAsync(Guid courseId)
+    public async Task<Round?> GetAsync(Guid roundId)
     {
-       return await _roundRepository.GetByIdAsync(courseId);
+       return await _roundRepository.GetByIdAsync(roundId);
     }
 
     
